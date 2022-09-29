@@ -2,38 +2,41 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-
-function generatePassword() {
-  // Data
-  // we need different sets of characters
+// Data
+// we need different sets of characters
+function charSet = numChar + lowercaseChar + uppercaseChar + specialChar;
     // numbers
-    var charNumbers = "1234567890";
+    var numChar = "1234567890";
     // lowercase characters
-    var charLowercase = "abcdefghijklmnopqrstuvwxyz";
+    var lowercaseChar = "abcdefghijklmnopqrstuvwxyz";
     // uppercase characters
-    var charUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var uppercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     // special characters
-    var charSpecial = "!@#$%^&*()"
-  // number of characters
+    var specialChar = "!@#$%^&*()"
 
-  // whether they chose numbers
+var characters = charSet();
 
-  // how many characters do you want to use?
-  var numberOfChar = prompt("How many characters would you like your password to be? (Must be between 8 and 128 characters).")
-  // do you want to use numbers? yes or no
-  var wantNumbers = prompt("Do you want to use numbers? Y or N")
-  // do you want to use uppercase characters?
-  var wantUppercase = prompt("Do you want to use uppercase characters? Y or N")
-  // do you want to use special characters?
-  var wantSpecial = prompt("Do you want to use special characters? Y or N")
+// number of characters
 
-  // put the selected characters together
-  // randomly select characters from all selected
-  // put them together
+// whether they chose numbers
 
-return "password"
+// how many characters do you want to use?
+var numberOfChar = prompt("How many characters would you like your password to be? (Must be between 8 and 128 characters).")
+// do you want to use numbers? yes or no
+var wantNumbers = prompt("Do you want to use numbers? Y or N")
+// do you want to use uppercase characters?
+var wantUppercase = prompt("Do you want to use uppercase characters? Y or N")
+// do you want to use special characters?
+var wantSpecial = prompt("Do you want to use special characters? Y or N")
 
-}
+// put the selected characters together
+// randomly select characters from all selected
+
+
+// put them together
+
+
+
 
 
 // Write password to the #password input
