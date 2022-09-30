@@ -2,41 +2,76 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+var options = "YN".split("");
+
+
+
+
+
 
 function generatePassword() {
 
-  // how many characters do you want to use?
-  var numberOfChar = prompt("How long do you want your password to be? (Must be between 8 and 128 characters).")
-  var passwordLength = numberOfChar.length
+  // Know user's password conditions
+  var passwordLength = numberOfChar();
 
-  if (passwordLength < 8 || passwordLength > 128) {
-    alert("Password must be between 8 and 128 characters")
-    var numberOfChar = prompt("How long do you want your password to be? (Must be between 8 and 128 characters).")
-  }
-  if (isNaN(passwordLength)) {
-    alert("Please enter a number.")
-    var numberOfChar = prompt("How long do you want your password to be? (Must be between 8 and 128 characters).")
-  }
+  var NumChoice = userWantsNum();
+  console.log("Numbers included in password:", NumChoice);
+
+  var UpperChoice = userWantsUpper();
+  console.log("Uppercase characters included in password:", UpperChoice);
   
-  // do you want to use numbers? yes or no
-  var wantNumbers = prompt("Do you want to use numbers? Y or N")
-  // do you want to use uppercase characters?
-  var wantUppercase = prompt("Do you want to use uppercase characters? Y or N")
-  // do you want to use special characters?
-  var wantSpecial = prompt("Do you want to use special characters? Y or N")
+  var SpecialChoice = userWantsSpecial();
+  console.log("Special characters included in password:", SpecialChoice);
 
-  // put the selected characters together
-  // randomly select characters from all selected
-
-
-  // put them together
-
-
+  writePassword();
 
 }
-// Data
-// we need different sets of characters
-function charSet = numChar + lowercaseChar + uppercaseChar + specialChar;
+
+
+
+
+
+function numberOfChar() {
+  var userInput = prompt("How long do you want your password to be? (Must be between 8 and 128 characters).")
+
+  if (userInput < 8 || userInput > 128) {
+    alert("Password must be between 8 and 128 characters")
+    return userInput
+  }
+  if (isNaN(userInput)) {
+    alert("Please enter a number.")
+    return userInput
+  }
+  return numberOfChar();
+}
+
+
+function userWantsNum() {
+  // do you want to use numbers? Y or N
+  var wantNumbers = prompt("Do you want to use numbers? Y or N").toUpperCase;
+
+}
+
+function userWantsUpper() {
+  // do you want to use uppercase characters? Y or N
+  var wantUppercase = prompt("Do you want to use uppercase characters? Y or N").toUpperCase;
+
+}
+
+function userWantsSpecial() {
+  // do you want to use special characters? Y or N
+  var wantSpecial = prompt("Do you want to use special characters? Y or N").toUpperCase;
+
+}
+
+  
+
+
+
+
+  // Data
+  // we need different sets of characters
+  function charSet() {
     // numbers
     var numChar = "1234567890".substring;
     // lowercase characters
@@ -44,15 +79,23 @@ function charSet = numChar + lowercaseChar + uppercaseChar + specialChar;
     // uppercase characters
     var uppercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".substring;
     // special characters
-    var specialChar = "!@#$%^&*()"
+    var specialChar = "!@#$%^&*()".substring;
 
-var characters = charSet();
+    charSet = (numChar + lowercaseChar + uppercaseChar + specialChar);
+  }
 
-// number of characters
+  var characters = charSet();
 
-// whether they chose numbers
+  // number of characters
+
+  // whether they chose numbers
 
 
+
+
+
+
+}
 
 
 // Write password to the #password input
@@ -66,10 +109,6 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-
-
 
 
 
