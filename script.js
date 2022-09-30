@@ -2,99 +2,95 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-var options = "YN".split("");
-
-
-
-
-
 
 function generatePassword() {
 
-  // Know user's password conditions
-  var passwordLength = numberOfChar();
-
-  var NumChoice = userWantsNum();
-  console.log("Numbers included in password:", NumChoice);
-
-  var UpperChoice = userWantsUpper();
-  console.log("Uppercase characters included in password:", UpperChoice);
-  
-  var SpecialChoice = userWantsSpecial();
-  console.log("Special characters included in password:", SpecialChoice);
-
-  writePassword();
-
-}
-
-
-
-
-
-function numberOfChar() {
+  //User's password conditions
+  // how many characters do you want?
   var userInput = prompt("How long do you want your password to be? (Must be between 8 and 128 characters).")
-
   if (userInput < 8 || userInput > 128) {
-    alert("Password must be between 8 and 128 characters")
-    return userInput
+     alert("Password must be between 8 and 128 characters")
+     var userInput = prompt("How long do you want your password to be?")
   }
   if (isNaN(userInput)) {
     alert("Please enter a number.")
-    return userInput
+    var userInput = prompt("How long do you want your password to be?")
   }
-  return numberOfChar();
-}
+  var passwordLength = userInput;
+  console.log("Length of password:", passwordLength);
 
-
-function userWantsNum() {
+        
   // do you want to use numbers? Y or N
-  var wantNumbers = prompt("Do you want to use numbers? Y or N").toUpperCase;
+  var userWantsNum = prompt("Do you want to use numbers? Y or N");
+  if (userWantsNum === "Y" || userWantsNum === "N") {
+    var numChoice = userWantsNum
+  } else {
+    alert("Please type Y or N");
+    var userWantsNum = prompt("Do you want to use numbers? Y or N");
+  }
+  console.log("Numbers included in password:", numChoice);
 
-}
 
-function userWantsUpper() {
   // do you want to use uppercase characters? Y or N
-  var wantUppercase = prompt("Do you want to use uppercase characters? Y or N").toUpperCase;
+  var userWantsUpper = prompt("Do you want to use uppercase characters? Y or N");
+  if (userWantsUpper === "Y" || userWantsUpper === "N") {
+    var upperChoice = userWantsUpper
+  } else {
+    alert("Please type Y or N");
+    var userWantsUpper = prompt("Do you want to use uppercase characters? Y or N");
+    }
+  console.log("Numbers included in password:", upperChoice);
 
-}
 
-function userWantsSpecial() {
   // do you want to use special characters? Y or N
-  var wantSpecial = prompt("Do you want to use special characters? Y or N").toUpperCase;
+  var userWantsSpecial = prompt("Do you want to use special characters? Y or N");
+  if (userWantsSpecial === "Y" || userWantsSpecial === "N") {
+    var specialChoice = userWantsSpecial
+  } else {
+    alert("Please type Y or N");
+    var userWantsSpecial = prompt("Do you want to use special characters? Y or N");
+  }
+  console.log("Numbers included in password:", specialChoice);
 
-}
 
-  
+  // Data - Characters
+  // numbers
+  var numChar = "1234567890".split("");
+  // lowercase characters
+  var lowercaseChar = "abcdefghijklmnopqrstuvwxyz".split("");
+  // uppercase characters
+  var uppercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  // special characters
+  var specialChar = "!@#$%^&*".split("");
 
+  var characters = [];
 
-
-
-  // Data
-  // we need different sets of characters
-  function charSet() {
-    // numbers
-    var numChar = "1234567890".substring;
-    // lowercase characters
-    var lowercaseChar = "abcdefghijklmnopqrstuvwxyz".substring;
-    // uppercase characters
-    var uppercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".substring;
-    // special characters
-    var specialChar = "!@#$%^&*()".substring;
-
-    charSet = (numChar + lowercaseChar + uppercaseChar + specialChar);
+  if (numChoice === "Y") {
+    characters.push(numChar);
   }
 
-  var characters = charSet();
+  if (upperChoice === "Y") {
+    characters.push(uppercaseChar);
+  } else if (userWantsUpper == "N") {
+    characters.push(lowercaseChar);
+  }
 
-  // number of characters
+  if (specialChoice === "Y") {
+    characters.push(specialChar);
+  }
 
-  // whether they chose numbers
-
-
-
-
+console.log("Characters selected:", characters)
 
 
+
+var generatedPass = ""
+
+  for (var i = 0; i < passwordLength; i++) {
+    var randomNumber = Math.floor(Math.random() * characters.length)
+    generatedPass += characters.substring(randomNumber, randomNumber+1);
+  }
+
+  return generatedPass;
 }
 
 
@@ -104,21 +100,9 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
+  
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-
-
-
-
-
-// click button --> give series of prompts for password criteria
-// user can select which criteria to include in the password
-// user can choose a length of at least 8 characters and no more than 128 characters
-// user can confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-// input should be validated and at least one character type should be selected
-// when all promopts answereed --> a password is generated that matches the selected criteria
-// password is either displayed in an alert or written to the page
