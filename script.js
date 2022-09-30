@@ -1,3 +1,8 @@
+// I tried my best! Seems like everything works up until the last lines of code where a password is randomly generated
+// using the information from the user (their inputs re. password conditions) and then displaying it on the website
+// That's what's been giving me the most trouble
+
+
 // Assignment code here
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
